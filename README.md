@@ -5,9 +5,9 @@
 ## PushNotification Service API
 
 ## GET /devices, /fileUpload
-## POST /devices, /notify, /notify/bulk, /apnssettings
-## PUT /devices/:deviceid, /gcmsettings, /wnssettings
-## DELETE /devices/:device, /apnssettings, /gcmsettings, /wnssettings
+   POST /devices, /notify, /notify/bulk, /apnssettings
+   PUT /devices/:deviceid, /gcmsettings, /wnssettings
+   DELETE /devices/:device, /apnssettings, /gcmsettings, /wnssettings
 
 
 Authenticates the user against requested provider and redirects back to application with a code.
