@@ -16,6 +16,11 @@
 ### PUT /devicesupdatechannel, /subscribe
 ### DELETE /deletechannel, /unsubscribe
 
+## Slack API
+
+### GET /apitest
+### POST /authtest, /channelcreate, /channelarchive, /channelunarchive, /channelinvite, /channeljoin, /channelsleave, /channelslist, /postMessage, /searchMessage
+
 
 Authenticates the user against requested provider and redirects back to application with a code.
 
