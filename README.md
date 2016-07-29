@@ -9,12 +9,14 @@
 ### PUT /devices/:deviceid, /gcmsettings, /wnssettings
 ### DELETE /devices/:device, /apnssettings, /gcmsettings, /wnssettings
 
+
 ## Channels API
 
 ### GET /getChannels
 ### POST /createchannel, /pushNotifyToChannel
 ### PUT /devicesupdatechannel, /subscribe
 ### DELETE /deletechannel, /unsubscribe
+
 
 ## Slack API
 
