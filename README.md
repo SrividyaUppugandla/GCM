@@ -9,6 +9,13 @@
 ### PUT /devices/:deviceid, /gcmsettings, /wnssettings
 ### DELETE /devices/:device, /apnssettings, /gcmsettings, /wnssettings
 
+## Channels API
+
+### GET /getChannels
+### POST /createchannel, /pushNotifyToChannel
+### PUT /devicesupdatechannel, /subscribe
+### DELETE /deletechannel, /unsubscribe
+
 
 Authenticates the user against requested provider and redirects back to application with a code.
 
