@@ -24,7 +24,7 @@
 ### POST /authtest, /channelcreate, /channelarchive, /channelunarchive, /channelinvite, /channeljoin, /channelsleave, /channelslist, /postMessage, /searchMessage
 
 
-Authenticates the user against requested provider and redirects back to application with a code.
+### GET /devices
 
 ### Request
 | Query Param  |                  Description                                                          |
