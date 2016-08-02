@@ -23,7 +23,7 @@
 ### GET /apitest
 ### POST /authtest, /channelcreate, /channelarchive, /channelunarchive, /channelinvite, /channeljoin, /channelsleave, /channelslist, /postMessage, /searchMessage
 
-### GET /devices
+## GET /devices
 
 ### Request
 | Query Param  |                  Description                                                          |
