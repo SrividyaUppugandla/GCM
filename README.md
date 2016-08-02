@@ -24,25 +24,17 @@
 ### POST /authtest, /channelcreate, /channelarchive, /channelunarchive, /channelinvite, /channeljoin, /channelsleave, /channelslist, /postMessage, /searchMessage
 
 ## GET /devices
+This API retrives all the registred devices
 
 ### Request
-| Query Param  |                  Description                                                          |
+| HTTP         |                  Description                                                          |
 |--------------|---------------------------------------------------------------------------------------|
-| callbackUrl  | callbackUrl to where Authentication service needs to redirect after authentication    |
+| apikey       | apikey is the key which has been provided by the developer for authorisation          |
 
 ### Response
-| HTTP           |      Value                           |
-|----------------|--------------------------------------|
-| query params   | code=eyJ0eXAiOiJKV1dfgdfg5fggyhh...  |
+- Gives back the list of registred devices .
 
-* Example API call
-
-      ```
-       var url = "http://authservice.54.208.194.189.xip.io"+"/facebook?"+"callbackUrl=http://localhost:3000/callback";
-       res.redirect(url);
-      ```
-
-## POST /account
+## GET /fileUpload
 This API retrieves the account details of the logged in user. Request parameters of the body are code(received from /facebook, /google, /twitter, /linkedin in callback) and apiKey
 
 ### Request
