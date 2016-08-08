@@ -230,3 +230,9 @@
 |--------------|---------------------------------------------------------------------------------------|
 | apiKey  |  apiKey can be retrieved from VCAPS of developer bounded application. apiKey needs to be passed in header for all API requests. |
 | channelName  | name of the channel to create. |
+
+### Response
+
+| HTTP status        |      Description                          |
+|----------------|--------------------------------------|
+| 200   | Successfully created channel.  |
