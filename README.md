@@ -240,7 +240,8 @@
 | 200   | Successfully created channel.  |
 | 400   | If some error occurs while creating channel.  |
 
-## POST /updatechannel
+
+## PUT /updatechannel
 
 - This api is used to update channel description
 - apiKey & channeldescription are required in headers
@@ -250,7 +251,7 @@
 | Header  |                  Description                                                          |
 |--------------|---------------------------------------------------------------------------------------|
 | apiKey  |  apiKey can be retrieved from VCAPS of developer bounded application. apiKey needs to be passed in header for all API requests. |
-| channeldescription  | description of the channel to create. |
+| channeldescription  | description of the channel to update. |
 
 ### Response
 
@@ -258,3 +259,44 @@
 |----------------|--------------------------------------|
 | 200   | Successfully updated channel.  |
 | 400   | If some error occurs while updating the channel.  |
+
+
+## DELETE /deletechannel
+
+- This api is used to delete channel
+- apiKey & channelName are required in headers
+
+### Request
+
+| Header  |                  Description                                                          |
+|--------------|---------------------------------------------------------------------------------------|
+| apiKey  |  apiKey can be retrieved from VCAPS of developer bounded application. apiKey needs to be passed in header for all API requests. |
+| channelName  | name of the channel to delete. |
+
+### Response
+
+| HTTP status        |      Description                          |
+|----------------|--------------------------------------|
+| 200   | Successfully deleted channel.  |
+| 400   | If some error occurs while deleting the channel.  |
+
+
+## PUT /subscribe
+
+- This api is used to subscribe channel
+- apiKey, channelName & deviceID are required in headers
+
+### Request
+
+| Header  |                  Description                                                          |
+|--------------|---------------------------------------------------------------------------------------|
+| apiKey  |  apiKey can be retrieved from VCAPS of developer bounded application. apiKey needs to be passed in header for all API requests. |
+| channelName  | name of the channel to subcribe. |
+| deviceID  | ID of device for the subcription of channel. |
+
+### Response
+
+| HTTP status        |      Description                          |
+|----------------|--------------------------------------|
+| 200   | Successfully subcribed to a channel.  |
+| 400   | If some error occurs while channel subcription.  |
