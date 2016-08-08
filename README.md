@@ -283,7 +283,7 @@
 
 ## PUT /subscribe
 
-- This api is used to subscribe channel
+- This api is used to subscribe to a channel
 - apiKey, channelName & deviceID are required in headers
 
 ### Request
@@ -300,3 +300,69 @@
 |----------------|--------------------------------------|
 | 200   | Successfully subcribed to a channel.  |
 | 400   | If some error occurs while subcribing to channel.  |
+
+
+## DELETE /unsubscribe
+
+- This api is used to unsubscribe from a channel
+- apiKey, channelName & deviceID are required in headers
+
+### Request
+
+| Header  |                  Description                                                          |
+|--------------|---------------------------------------------------------------------------------------|
+| apiKey  |  apiKey can be retrieved from VCAPS of developer bounded application. apiKey needs to be passed in header for all API requests. |
+| channelName  | name of the channel to unsubcribe. |
+| deviceID  | deviceID to unsubscribe from a channel. |
+
+### Response
+
+| HTTP status        |      Description                          |
+|----------------|--------------------------------------|
+| 200   | Successfully unsubcribed from a channel.  |
+| 400   | If some error occurs while unsubscribing from a channel.  |
+
+
+## POST /pushNotifyToChannel
+
+- This api is used to notify the devices which is registered to the channel
+- apiKey required in headers
+- The possible Body parameters are channelname,message,settings - sound,badge,payload ...
+
+
+### Request
+
+| Body  |                  Description                                                          |
+|--------------|---------------------------------------------------------------------------------------|
+| body  | {"channelname":"mychannel","message":"This is from postman - test1","settings":{"gcm":{"sound":"ping.aiff","badge":3,"payload":{"sample":"message for APNS"}}}}   |
+
+| Header  |                  Description                                                          |
+|--------------|---------------------------------------------------------------------------------------|
+| apiKey  |  apiKey can be retrieved from VCAPS of developer bounded application. apiKey needs to be passed in header for all API requests. |
+
+
+### Response
+
+| HTTP status        |      Description                          |
+|----------------|--------------------------------------|
+| 202   | Accepted to send push notification. Notification will be sent if all settings are available  |
+| 400   | If no devices found for sending push notifications  |
+
+
+## GET /getChannels
+
+- This api is used to get channels info
+- apiKey is required in headers
+
+### Request
+
+| Header  |                  Description                                                          |
+|--------------|---------------------------------------------------------------------------------------|
+| apiKey  |  apiKey can be retrieved from VCAPS of developer bounded application. apiKey needs to be passed in header for all API requests. |
+
+### Response
+
+| HTTP status        |      Description                          |
+|----------------|--------------------------------------|
+| 200   | channels data  |
+| 400   | If some error occurs while getting the channels data.  |
