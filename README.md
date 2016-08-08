@@ -219,3 +219,14 @@
 ## DELETE  /apnssettings, /gcmsettings, /wnssettings
 
 
+## POST /createchannel
+
+- This api is used to create a channel
+- apiKey & channelName are required in headers
+
+### Request
+
+| Header  |                  Description                                                          |
+|--------------|---------------------------------------------------------------------------------------|
+| apiKey  |  apiKey can be retrieved from VCAPS of developer bounded application. apiKey needs to be passed in header for all API requests. |
+| channelName  | name of the channel to create. |
