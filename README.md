@@ -283,7 +283,7 @@
 
 ## PUT /subscribe
 
-- This api is used to subscribe to a channel
+- This api is used to subscribe the device to a channel
 - apiKey, channelName & deviceID are required in headers
 
 ### Request
@@ -304,7 +304,7 @@
 
 ## DELETE /unsubscribe
 
-- This api is used to unsubscribe from a channel
+- This api is used to unsubscribe the device from a channel
 - apiKey, channelName & deviceID are required in headers
 
 ### Request
