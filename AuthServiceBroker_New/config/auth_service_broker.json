@@ -1,0 +1,47 @@
+{
+  "credentials": {
+    "authUser": "Oauth",
+    "authPassword": "Oauth"
+  },
+  "catalog": {
+    "apiVersion": "2.4.0",
+    "defaultVersion": "1.0",
+    "name": "new-flow-Oauth-Service-Broker",
+    "url": "auto",
+    "services": [
+      {
+        "id": "NewflowoauthService",
+        "bindable": true,
+        "name": "NewflowOauthService",
+        "version": "1.0",
+        "description": "Provides AuthService instance Details",
+        "tags": [
+            "svc_offr_microService"
+          ],
+        "metadata": {
+          "providerDisplayName": "NewflowOAuth",
+          "tags": [
+            "svc_offr_microService"
+          ]
+        },
+        "plans": [
+          {
+            "name": "free",
+            "id": "New_Flow_Oauth_plan",
+            "description": "free",
+            "public": true,
+            "free": true
+          }
+        ]
+      }
+    ]
+  },
+  "plans": {
+    "New_Flow_Oauth_plan": {
+      "parameters": {
+        "key1": "value1",
+        "key2": "value2"
+      }
+    }
+  }
+}
