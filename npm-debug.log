@@ -1,0 +1,60 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files\\nodejs\\node.exe',
+1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'install' ]
+2 info using npm@2.15.5
+3 info using node@v4.4.5
+4 verbose readDependencies loading dependencies from C:\Users\438978\Desktop\Microservices-MS_Release2\ServiceBrokers\AuthServiceBroker_New\package.json
+5 warn package.json auth-service-broker@0.1.0 No repository field.
+6 warn package.json auth-service-broker@0.1.0 No license field.
+7 verbose install where, deps [ 'C:\\Users\\438978\\Desktop\\Microservices-MS_Release2\\ServiceBrokers\\AuthServiceBroker_New',
+7 verbose install   [ 'async',
+7 verbose install     'handlebars',
+7 verbose install     'restify',
+7 verbose install     'cf-nodejs-client',
+7 verbose install     'zip-folder',
+7 verbose install     'simple-git',
+7 verbose install     'rmdir',
+7 verbose install     'chai',
+7 verbose install     'chai-http',
+7 verbose install     'supertest',
+7 verbose install     'istanbul',
+7 verbose install     'request',
+7 verbose install     'uuid' ] ]
+8 verbose install where, peers [ 'C:\\Users\\438978\\Desktop\\Microservices-MS_Release2\\ServiceBrokers\\AuthServiceBroker_New',
+8 verbose install   [] ]
+9 verbose installManyTop reading for lifecycle C:\Users\438978\Desktop\Microservices-MS_Release2\ServiceBrokers\AuthServiceBroker_New\package.json
+10 info preinstall auth-service-broker@0.1.0
+11 verbose unsafe-perm in lifecycle true
+12 info auth-service-broker@0.1.0 Failed to exec preinstall script
+13 verbose stack Error: auth-service-broker@0.1.0 preinstall: `bash gitClone.sh`
+13 verbose stack Exit status 1
+13 verbose stack     at EventEmitter.<anonymous> (C:\Program Files\nodejs\node_modules\npm\lib\utils\lifecycle.js:217:16)
+13 verbose stack     at emitTwo (events.js:87:13)
+13 verbose stack     at EventEmitter.emit (events.js:172:7)
+13 verbose stack     at ChildProcess.<anonymous> (C:\Program Files\nodejs\node_modules\npm\lib\utils\spawn.js:24:14)
+13 verbose stack     at emitTwo (events.js:87:13)
+13 verbose stack     at ChildProcess.emit (events.js:172:7)
+13 verbose stack     at maybeClose (internal/child_process.js:827:16)
+13 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:211:5)
+14 verbose pkgid auth-service-broker@0.1.0
+15 verbose cwd C:\Users\438978\Desktop\Microservices-MS_Release2\ServiceBrokers\AuthServiceBroker_New
+16 error Windows_NT 6.1.7601
+17 error argv "C:\\Program Files\\nodejs\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install"
+18 error node v4.4.5
+19 error npm  v2.15.5
+20 error code ELIFECYCLE
+21 error auth-service-broker@0.1.0 preinstall: `bash gitClone.sh`
+21 error Exit status 1
+22 error Failed at the auth-service-broker@0.1.0 preinstall script 'bash gitClone.sh'.
+22 error This is most likely a problem with the auth-service-broker package,
+22 error not with npm itself.
+22 error Tell the author that this fails on your system:
+22 error     bash gitClone.sh
+22 error You can get information on how to open an issue for this project with:
+22 error     npm bugs auth-service-broker
+22 error Or if that isn't available, you can get their info via:
+22 error
+22 error     npm owner ls auth-service-broker
+22 error There is likely additional logging output above.
+23 verbose exit [ 1, true ]

@@ -1,368 +1,78 @@
-# PushNotification Micro Service.
+# AuthService Service Broker
+A  Cloud Foundry Service Broker, complying to version 2.4 of the interface specification. This will serve all the request 
+for AuthService services which is coming from the cloud controller. This service broker  is responsible for:
+- Implementing a REST server to interface with the Cloud Controller
+- Authenticating requests using HTTP basic auth
+- Providing an interface to the data service itself for all provision/unprovision & bind/unbind events
+- Maintaining a catalog of all available services and associated service plans
+
+## Config
+The catalog of services and plans is defined in the file config/auth-service-broker.json.
+Hopefully, the configurations are fairly self explanatory. Most importantly, don't forget to change "authUser" and "authPassword" .
+If you don't provide the authUser and authPassword , there will not be any security for the broker; and it would be accesible to anyone.
+
+##  Creating AuthService Broker App:
+
+  1.	Clone the Auth-Service Service broker 
+  
+  ```
+    cd  Microservices/ServiceBrokers/AuthServiceBroker/
+  ```
+  
+  ```  
+    cf push AuthServiceBroker
+  ```    
+  An App “AuthServiceBroker” will be started based on the package.json  file. You can view the app using following command “cf apps”.
+	   
+  
+  
+##  Register the AuthServiceBroker app as service broker in cloud foundry
+
+  1.	To create service broker in CF
+  
+  ```
+    cf create-service-broker “<brokername>” <username> <pwd> <brokerapp url>	
+  ```
+  This username and password is the same as that which you have given in the config.json 
+  
+  2.	Get the service name from below command
+  
+  ```
+    cf service-access
+  ```
+  3.	To get the service in marketplace
+  
+  ```
+ 	  cf enable-service-access “<servicename>”
+ 	  cf marketplace
+ ```
+ 
+##	Now to create AuthService instance
+
+  To create single instance,
+
+  ```
+    cf create-service AuthService free AuthInstance -c '{"endpoint":"https://api.54.208.194.189.xip.io","appname":"testservice1","space_guid":"b169a527-a10a-4a84-a45a-2909fee6b1d9","domain_guid":"56f6da1f-eed3-42fb-a629-b28101069137","host":"54.208.194.189.xip.io","environment_json":{"facebook_clientID":"478519535677977","facebook_clientSecret":"a9bc36abea045066cd4be131e278ff80","google_clientID":"625227390094-m47bnlnuaguvq3phn5t5kmp503fsiagd.apps.googleusercontent.com","google_clientSecret":"k0vpP0Tp5dP2oqXmcF9v10G8","twitter_clientID":"6F5cvS3hPsh4QIVfS6PsJ10uz","twitter_clientSecret":"DHDIojA6kdzi77nH3eLXmh3fvHN68AAL0zSxC11yh0N2huBFr1","linkedin_clientID":"75shq40xwna1yl","linkedin_clientSecret":"kUomrXzdex8PfY3e"},"token":{"access_token":"eyJhbGciOiJSUzI1NiIsImtpZCI6ImxlZ2FjeS10b2tlbi1rZXkiLCJ0eXAiOiJKV1QifQ.eyJqdGkiOiJkZDRlNGY3ODY5ZDA0MDFkYjAxZDhiNzE1MWI2Mzc5NCIsInN1YiI6ImM3NDQ4ZGZmLWRmZjktNGJmZC05MjYxLTdiMmI2YjE2OGVlMyIsInNjb3BlIjpbIm9wZW5pZCIsInNjaW0ucmVhZCIsImNsb3VkX2NvbnRyb2xsZXIuYWRtaW4iLCJ1YWEudXNlciIsInJvdXRpbmcucm91dGVyX2dyb3Vwcy5yZWFkIiwiY2xvdWRfY29udHJvbGxlci5yZWFkIiwicGFzc3dvcmQud3JpdGUiLCJjbG91ZF9jb250cm9sbGVyLndyaXRlIiwiZG9wcGxlci5maXJlaG9zZSIsInNjaW0ud3JpdGUiXSwiY2xpZW50X2lkIjoiY2YiLCJjaWQiOiJjZiIsImF6cCI6ImNmIiwiZ3JhbnRfdHlwZSI6InBhc3N3b3JkIiwidXNlcl9pZCI6ImM3NDQ4ZGZmLWRmZjktNGJmZC05MjYxLTdiMmI2YjE2OGVlMyIsIm9yaWdpbiI6InVhYSIsInVzZXJfbmFtZSI6ImFkbWluIiwiZW1haWwiOiJhZG1pbiIsImF1dGhfdGltZSI6MTQ2NjE1NTc0NCwicmV2X3NpZyI6ImVlZjAzNDhjIiwiaWF0IjoxNDY2MTU1NzQ0LCJleHAiOjE0NjYxNTYzNDQsImlzcyI6Imh0dHBzOi8vdWFhLjU0LjIwOC4xOTQuMTg5LnhpcC5pby9vYXV0aC90b2tlbiIsInppZCI6InVhYSIsImF1ZCI6WyJjZiIsIm9wZW5pZCIsInNjaW0iLCJjbG91ZF9jb250cm9sbGVyIiwidWFhIiwicm91dGluZy5yb3V0ZXJfZ3JvdXBzIiwicGFzc3dvcmQiLCJkb3BwbGVyIl19.q3gxL0FPXvLn-ummG2a5-uKXsykB8zE8BzU4FelhoNzdR9tWcKlBYA-LEDBjHxVCd_E-MD9nuTHaWUPFiejsLqMyCizFsYM7DlTL8qMfXACs9p4SP-9FqzvQMaTZAoJcAMfcFqMdGf6WaJfbEF5vOKFbrxfsVZ9aIDw1wUCz_1g","token_type":"bearer","refresh_token":"eyJhbGciOiJSUzI1NiIsImtpZCI6ImxlZ2FjeS10b2tlbi1rZXkiLCJ0eXAiOiJKV1QifQ.eyJqdGkiOiJkZDRlNGY3ODY5ZDA0MDFkYjAxZDhiNzE1MWI2Mzc5NC1yIiwic3ViIjoiYzc0NDhkZmYtZGZmOS00YmZkLTkyNjEtN2IyYjZiMTY4ZWUzIiwic2NvcGUiOlsib3BlbmlkIiwic2NpbS5yZWFkIiwiY2xvdWRfY29udHJvbGxlci5hZG1pbiIsInVhYS51c2VyIiwicm91dGluZy5yb3V0ZXJfZ3JvdXBzLnJlYWQiLCJjbG91ZF9jb250cm9sbGVyLnJlYWQiLCJwYXNzd29yZC53cml0ZSIsImNsb3VkX2NvbnRyb2xsZXIud3JpdGUiLCJkb3BwbGVyLmZpcmVob3NlIiwic2NpbS53cml0ZSJdLCJpYXQiOjE0NjYxNTU3NDQsImV4cCI6MTQ2ODc0Nzc0NCwiY2lkIjoiY2YiLCJjbGllbnRfaWQiOiJjZiIsImlzcyI6Imh0dHBzOi8vdWFhLjU0LjIwOC4xOTQuMTg5LnhpcC5pby9vYXV0aC90b2tlbiIsInppZCI6InVhYSIsImdyYW50X3R5cGUiOiJwYXNzd29yZCIsInVzZXJfbmFtZSI6ImFkbWluIiwib3JpZ2luIjoidWFhIiwidXNlcl9pZCI6ImM3NDQ4ZGZmLWRmZjktNGJmZC05MjYxLTdiMmI2YjE2OGVlMyIsInJldl9zaWciOiJlZWYwMzQ4YyIsImF1ZCI6WyJjZiIsIm9wZW5pZCIsInNjaW0iLCJjbG91ZF9jb250cm9sbGVyIiwidWFhIiwicm91dGluZy5yb3V0ZXJfZ3JvdXBzIiwicGFzc3dvcmQiLCJkb3BwbGVyIl19.Xc1YoB8g6o0nMft8zmvormPP9lipTRqqulio4oYYAyCEnuMcHJ0wzZnQLXvV-VFTJwpkUVBNuQEHQqQSpeKfXtRfQAaMRtW1AjmFW_EjXHebA6Uw8lSTj0oytMjqDHtQPyYEIX_Liz1l0sTPuG9M_vsfqF1esEoOBcvQahdG8UM","expires_in":599,"scope":"openid scim.read cloud_controller.admin uaa.user routing.router_groups.read cloud_controller.read password.write cloud_controller.write doppler.firehose scim.write","jti":"dd4e4f7869d0401db01d8b7151b63794"}}'
+  ```
+
+  
+##	To bind the service to users app
+
+  ```
+    cf bind-service AuthTemplateApp AuthInstance 
+  ```
+  
+##    To un-bind the service from users app
+
+ ```
+    cf unbind-service AuthTemplateApp AuthInstance 
+ ```
+ 
+  
+## To delete the service instance
+
+  ```
+    cf delete-service AuthInstance
+  ```
 
-### This micro service offers the required APIs for PushNotifications. APIs include push notifications for iOS, android, windows, slack and creating channels.
 
-## Keywords
-
-- deviceId       : The deviceId is the unique ID for the device for the application
-- userId         : The userId is the unique user ID for the user for the application
-- deviceToken    : deviceToken refers to registrationId in Android, device-token in iOS and channelUrl in windows. This token is retrieved after registering against GCM/iOS/WNS from device.
-- platform       : Platform refers to GCM(for Android), APNS(for iOS) and WNS(for Windows)
-- createdMode    : This is for identifying through where registration of device is done. This is a string value and can be anything. eg: SDK, API.
-- isBlackListed  : This will denote whether a particular device is enabled for push notification
-- apikey         : apiKey can be retrieved from VCAPS of developer bounded application. apiKey needs to be passed in header for all API requests.
-
-
-## PushNotification Service API
-
-## POST /devices
-
-- Creates a new device registration with the PushNotification service. The device registrations happens from the device. The deviceId is the unique ID for the device for the application.
-- apiKey required in headers.
-- Body parameters for request are deviceId, userId, deviceToken, platform and createdMode. Mandatory parameters in the request are deviceId, deviceToken and platform.
-
-      ```
-       Eg for JSON body
-       {
-         "deviceId": "7654g67hhgt5433",
-         "userId": "testuser001",
-         "deviceToken": "765686eab297cc261cad2708553b2e6479824aed824f506219a5c9sdcfsd33485b31d01239997676",
-         "platform": "GCM",
-         "createdMode": "SDK",
-         "isBlackListed" : false
-       }
-      ```
-
-### Request
-
-| Body  |                  Description                                                          |
-|--------------|---------------------------------------------------------------------------------------|
-| body  | {"deviceId":"7654g67hhgt5433","userId":"testuser001","deviceToken":"765686eab297cc261cad2708553b2e6479824aed824f506219a5c9sdcfsd33485b31d01239997676","platform":"GCM","createdMode":"SDK","isBlackListed" : false}    |
-
-| Header  |                  Description                                                          |
-|--------------|---------------------------------------------------------------------------------------|
-| apiKey  |  apiKey can be retrieved from VCAPS of developer bounded application. apiKey needs to be passed in header for all API requests. |
-
-
-### Response
-
-| HTTP status        |      Description                          |
-|----------------|--------------------------------------|
-| 200   | During successful device registration  |
-| 400   | During failure or update requires for a device  |
-
-
-## GET /devices
-
-- This api will fetch information of all the devices which is registered to our server.
-- apiKey required in headers.
-
-### Request
-
-| Header  |                  Description                                                          |
-|--------------|---------------------------------------------------------------------------------------|
-| apiKey  |  apiKey can be retrieved from VCAPS of developer bounded application. apiKey needs to be passed in header for all API requests. |
-
-### Response
-
-| body         |      Description                          |
-|----------------|--------------------------------------|
-| userId   | The userId is the unique user ID for the user for the application  |
-| deviceId   | The deviceId is the unique ID for the device for the application |
-| platform   | Platform refers to GCM(for Android), APNS(for iOS) and WNS(for Windows)|
-| createdTime   | The time at which the device is registered in the server|
-| lastUpdatedTime   | The time at which the device registration details is updated in the server|
-| createdMode   | This is for identifying through where registration of device is done. This is a string value and can be anything. eg: SDK, API.|
-| isBlackListed   | This will denote whether a particular device is enabled for push notification|
-
-
-      ```
-       Eg for response JSON body
-       [
-         {
-           "userId": "Notepad",
-           "deviceId": "wnsPhoneTest001",
-           "platform": "WNS",
-           "createdTime": "2016-08-01T11:16:18.051Z",
-           "lastUpdatedTime": "2016-08-01T11:19:18.051Z",
-           "createdMode": "API",
-           "isBlackListed": false
-         },
-         {
-           "userId": "LGE Nexus 5",
-           "deviceId": "358239056043849",
-           "platform": "GCM",
-           "createdTime": "2016-08-02T06:30:48.837Z",
-           "lastUpdatedTime": "2016-08-01T11:19:18.051Z",
-           "createdMode": "API",
-           "isBlackListed": false
-         },
-         {
-           "userId": "gcm_Device",
-           "deviceId": "gcmtest001",
-           "platform": "GCM",
-           "createdTime": "2016-08-04T13:32:15.618Z",
-           "lastUpdatedTime": null,
-           "createdMode": "API",
-           "isBlackListed": false
-         }
-       ]
-      ```
-
-## PUT /devices/:deviceid
-
-- This api is used to update the registered device details in the server  .
-- apiKey required in headers.
-- The possible Body parameters are userId,deviceToken and isBlackListed
-- In the path parameter you have to pass the deviceID of the device which has to be updated
-
-### Request
-
-| Body  |                  Description                                                          |
-|--------------|---------------------------------------------------------------------------------------|
-| body  | {"userId":"testuser001","deviceToken":"765686eab297cc261cad2708553b2e6479824aed824f506219a5c9sdcfsd33485b31d01239997676","isBlackListed" : false}    |
-
-| Header  |                  Description                                                          |
-|--------------|---------------------------------------------------------------------------------------|
-| apiKey  |  apiKey can be retrieved from VCAPS of developer bounded application. apiKey needs to be passed in header for all API requests. |
-
-
-      ```
-       Eg for JSON requestbody
-       {
-       	"userId"		: "LGE Nexus 5",
-
-       }
-      ```
-
-### Response
-
-| HTTP status        |      Description                          |
-|----------------|--------------------------------------|
-| 200   | During successful device registration  |
-| 400   | During failure or update requires for a device  |
-
-
-
-## DELETE /devices/:deviceId
-
-- This api is used to delete the registered device details in the server  .
-- apiKey required in headers.
-- In the path parameter you have to pass the deviceID of the device which has to be deleted
-
-### Request
-
-| Header  |                  Description                                                          |
-|--------------|---------------------------------------------------------------------------------------|
-| apiKey  |  apiKey can be retrieved from VCAPS of developer bounded application. apiKey needs to be passed in header for all API requests. |
-
-### Response
-
-| HTTP status        |      Description                          |
-|----------------|--------------------------------------|
-| 200   | During successful device deletion  |
-| 400   | During failure of delete operation  |
-
-## POST /fileUpload
-
-- This api is used to upload the p12 certificate of APNS  settings.
-- apiKey, passphrase and p12 certificate has to be send as body
-
-
-### Request
-
-| body  |                  Description                                                          |
-|--------------|---------------------------------------------------------------------------------------|
-| apiKey  |  apiKey can be retrieved from VCAPS of developer bounded application. apiKey needs to be passed in header for all API requests. |
-| passPhrase  | Password of the P12 certificate |
-| p12   | p12 certificate has to be uploaded as multipart data for APNS settings. |
-
-### Response
-
-| HTTP status        |      Description                          |
-|----------------|--------------------------------------|
-| 200   | During successful upload  |
-| 400   | During failure of upload operation  |
-
-
-## POST /notify
-
-- This api is used to notify the devices which is registered to the server
-- apiKey required in headers
-- The possible Body parameters are message,deviceId,settings - sound,badge,payload ...
-
-
-### Request
-
-| Body  |                  Description                                                          |
-|--------------|---------------------------------------------------------------------------------------|
-| body  | {"message":"This is from postman - test1","deviceId":["B8DDF72E-5640-4CAC-A975-79CDA31771A4"],"settings":{"gcm":{"sound":"ping.aiff","badge":3,"payload":{"sample":"message for APNS"}}}}   |
-
-| Header  |                  Description                                                          |
-|--------------|---------------------------------------------------------------------------------------|
-| apiKey  |  apiKey can be retrieved from VCAPS of developer bounded application. apiKey needs to be passed in header for all API requests. |
-
-
-### Response
-
-| HTTP status        |      Description                          |
-|----------------|--------------------------------------|
-| 202   | Accepted to send push notification. Notification will be sent if all settings are available  |
-| 400   | If no devices found for sending push notifications  |
-
-
-
-- Pending APIs
-
-## POST /notify/bulk, /apnssettings
-## PUT /gcmsettings, /wnssettings
-## DELETE  /apnssettings, /gcmsettings, /wnssettings
-
-
-## POST /createchannel
-
-- This api is used to create a channel
-- apiKey & channelName are required in headers
-- channeldescription is optional in headers
-
-### Request
-
-| Header  |                  Description                                                          |
-|--------------|---------------------------------------------------------------------------------------|
-| apiKey  |  apiKey can be retrieved from VCAPS of developer bounded application. apiKey needs to be passed in header for all API requests. |
-| channelName  | name of the channel to create. |
-| channeldescription  | description of the channel to create. |
-
-### Response
-
-| HTTP status        |      Description                          |
-|----------------|--------------------------------------|
-| 200   | Successfully created channel.  |
-| 400   | If some error occurs while creating channel.  |
-
-
-## PUT /updatechannel
-
-- This api is used to update channel description
-- apiKey & channeldescription are required in headers
-
-### Request
-
-| Header  |                  Description                                                          |
-|--------------|---------------------------------------------------------------------------------------|
-| apiKey  |  apiKey can be retrieved from VCAPS of developer bounded application. apiKey needs to be passed in header for all API requests. |
-| channeldescription  | description of the channel to update. |
-
-### Response
-
-| HTTP status        |      Description                          |
-|----------------|--------------------------------------|
-| 200   | Successfully updated channel.  |
-| 400   | If some error occurs while updating the channel.  |
-
-
-## DELETE /deletechannel
-
-- This api is used to delete channel
-- apiKey & channelName are required in headers
-
-### Request
-
-| Header  |                  Description                                                          |
-|--------------|---------------------------------------------------------------------------------------|
-| apiKey  |  apiKey can be retrieved from VCAPS of developer bounded application. apiKey needs to be passed in header for all API requests. |
-| channelName  | name of the channel to delete. |
-
-### Response
-
-| HTTP status        |      Description                          |
-|----------------|--------------------------------------|
-| 200   | Successfully deleted channel.  |
-| 400   | If some error occurs while deleting the channel.  |
-
-
-## PUT /subscribe
-
-- This api is used to subscribe the device to a channel
-- apiKey, channelName & deviceID are required in headers
-
-### Request
-
-| Header  |                  Description                                                          |
-|--------------|---------------------------------------------------------------------------------------|
-| apiKey  |  apiKey can be retrieved from VCAPS of developer bounded application. apiKey needs to be passed in header for all API requests. |
-| channelName  | name of the channel to subcribe. |
-| deviceID  | deviceID for channel subcription. |
-
-### Response
-
-| HTTP status        |      Description                          |
-|----------------|--------------------------------------|
-| 200   | Successfully subcribed to a channel.  |
-| 400   | If some error occurs while subcribing to channel.  |
-
-
-## DELETE /unsubscribe
-
-- This api is used to unsubscribe the device from a channel
-- apiKey, channelName & deviceID are required in headers
-
-### Request
-
-| Header  |                  Description                                                          |
-|--------------|---------------------------------------------------------------------------------------|
-| apiKey  |  apiKey can be retrieved from VCAPS of developer bounded application. apiKey needs to be passed in header for all API requests. |
-| channelName  | name of the channel to unsubcribe. |
-| deviceID  | deviceID to unsubscribe from a channel. |
-
-### Response
-
-| HTTP status        |      Description                          |
-|----------------|--------------------------------------|
-| 200   | Successfully unsubcribed from a channel.  |
-| 400   | If some error occurs while unsubscribing from a channel.  |
-
-
-## POST /pushNotifyToChannel
-
-- This api is used to notify the devices which is registered to the channel
-- apiKey required in headers
-- The possible Body parameters are channelname,message,settings - sound,badge,payload ...
-
-
-### Request
-
-| Body  |                  Description                                                          |
-|--------------|---------------------------------------------------------------------------------------|
-| body  | {"channelname":"mychannel","message":"This is from postman - test1","settings":{"gcm":{"sound":"ping.aiff","badge":3,"payload":{"sample":"message for APNS"}}}}   |
-
-| Header  |                  Description                                                          |
-|--------------|---------------------------------------------------------------------------------------|
-| apiKey  |  apiKey can be retrieved from VCAPS of developer bounded application. apiKey needs to be passed in header for all API requests. |
-
-
-### Response
-
-| HTTP status        |      Description                          |
-|----------------|--------------------------------------|
-| 202   | Accepted to send push notification. Notification will be sent if all settings are available  |
-| 400   | If no devices found for sending push notifications  |
-
-
-## GET /getChannels
-
-- This api is used to get channels info
-- apiKey is required in headers
-
-### Request
-
-| Header  |                  Description                                                          |
-|--------------|---------------------------------------------------------------------------------------|
-| apiKey  |  apiKey can be retrieved from VCAPS of developer bounded application. apiKey needs to be passed in header for all API requests. |
-
-### Response
-
-| HTTP status        |      Description                          |
-|----------------|--------------------------------------|
-| 200   | channels data  |
-| 400   | If some error occurs while getting the channels data.  |

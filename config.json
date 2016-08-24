@@ -1,0 +1,21 @@
+{
+  "protocol":"http://",
+  "facebookCallback":"/auth/facebook/callback",
+  "twitterCallback":"/auth/twitter/callback",
+  "linkedinCallback":"/auth/linkedin/callback",
+  "googleCallback":"/auth/google/callback",
+  "microservicePath":"/Microservices/MicroServices/Authentication_MicroService",
+  "appZip":"application.zip",
+  "pass":"&password=",
+  "contentType":"application/json",
+  "charSet":"utf-8",
+  "authorization":"Basic Y2Y6",
+  "oAuthJson":"OAuth.json",
+  "space_guid":"a152205a-aa8f-4e0e-97bd-17c59c3ceaa1",
+  "domain_guid":"df98298c-72b0-4367-b26d-bf95b10c1e6b",
+  "endpoint":"https://api.qa.cognizantone.org",
+  "username" : "microuser",
+  "password" : "microuser",
+  "loginProtocol":"https://login.qa.cognizantone.org/oauth/token?grant_type=password&username=",
+  "host" : "qa.cognizantone.org"
+}
