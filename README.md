@@ -109,9 +109,13 @@
 
 ## POST /generateOtp
 - This API generates an OTP with the given combination(numeric,alpha or both) and sends the OTP to desired receipient based on the given channel and receipient details.
+
 - Creating and sending OTP is based on the validation of hook condition.
+
 - If the developer added a contional hook while configuring from UI, he must send the same condtion as header parameter while calling the /generateOtp API.
+
 - If the channelProvider is sendgrid then this API requires request body parameters as {"toRecipient":"someemail@gmail.com","fromMail": "someemail@gmail.com"}
+
 - If the channelProvider is twilio then this API requires request body parameters as {"toRecipient":"+765XXXX","fromNo": "+91XXXXXX"}
 
 - The response json will have details of nextCall and token with statusCode as 303
