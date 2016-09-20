@@ -110,17 +110,21 @@
 ## POST /generateOtp
 - This API generates an OTP with the given combination(numeric,alpha or both) and sends the OTP to desired receipient based on the given channel and receipient details.
 
-- Creating and sending OTP is based on the validation of hook condition.
-
-- If the developer added a conditional hook while configuring from UI, he must send the same condition as header parameter while calling the /generateOtp API.
-
-- If both the conditions are matched only OTP will generate Otherwise not. 
-
 - If the channelProvider is sendgrid then this API requires request body parameters as {"toRecipient":"someemail@gmail.com","fromMail": "someemail@gmail.com"}
 
 - If the channelProvider is twilio then this API requires request body parameters as {"toRecipient":"+765XXXX","fromNo": "+91XXXXXX"}
 
 - The response json will have details of nextCall and token with statusCode as 303
+
+### Steps to Generate (or) Skip OTP
+
+- Generating/Skipping of OTP is based on conditional hooks
+
+- If the developer added a conditional hook while configuring from UI & he passed the same condition as request header parameter than OTP will generate.
+
+- If the developer added a conditional hook while configuring from UI & he didn't pass the condition as request header parameter than OTP generation will skip.
+
+- If the developer didn't add a conditional hook while configuring from UI & he didn't pass the condition as request header parameter than OTP will generate.
 
 ### Request
 
