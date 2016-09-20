@@ -112,7 +112,9 @@
 
 - Creating and sending OTP is based on the validation of hook condition.
 
-- If the developer added a contional hook while configuring from UI, he must send the same condtion as header parameter while calling the /generateOtp API.
+- If the developer added a conditional hook while configuring from UI, he must send the same condition as header parameter while calling the /generateOtp API.
+
+- If both the conditions are matched only OTP will generate Otherwise not. 
 
 - If the channelProvider is sendgrid then this API requires request body parameters as {"toRecipient":"someemail@gmail.com","fromMail": "someemail@gmail.com"}
 
