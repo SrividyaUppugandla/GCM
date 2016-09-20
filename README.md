@@ -129,6 +129,7 @@
 | HTTP       | Value |
 |------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | token      | The token which is retained from the prior call should be passed as header |
+| some header key for condition | The condition should be passes here. e.x: if the conidition is like x is equals to 1 means, x has to be passes as header key and 1 is value of header. |
 | Body       | {"toRecipient":"someemail@gmail.com","fromMail": "someemail@gmail.com"} |
 
 
