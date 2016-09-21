@@ -118,7 +118,7 @@
 
 ### Steps to Generate (or) Skip OTP
 
-- Generating/Skipping of OTP is based on conditional hooks
+- Generating/Skipping of OTP is based on conditional hooks.
 
 - If the developer added a conditional hook while configuring from UI & he passed the same condition as request header parameter than OTP will generate.
 
