@@ -120,11 +120,11 @@
 
 - Generating/Skipping of OTP is based on conditional hooks.
 
-- If the developer added a conditional hook while configuring from UI & passed the same condition as request header parameter than OTP will generate.
+- If the developer added a conditional hook while configuring from UI & passed the same condition as request header parameter then OTP will generate.
 
-- If the developer added a conditional hook while configuring from UI & didn't pass the condition as request header parameter than OTP generation will skip.
+- If the developer added a conditional hook while configuring from UI & didn't pass the condition as request header parameter then OTP generation will skip.
 
-- If the developer didn't add a conditional hook while configuring from UI & didn't pass the condition as request header parameter than OTP will generate.
+- If the developer didn't add a conditional hook while configuring from UI & didn't pass the condition as request header parameter then OTP will generate.
 
 ### Request
 
